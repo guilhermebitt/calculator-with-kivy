@@ -19,29 +19,47 @@ class CalcLayout(Widget):
             self.ids.calc_input.text = ''
         self.ids.calc_input.text += digit.text
 
-    def add(self):
-        self.ids.calc_input.text += '+'
-
-    def subtract(self):
-        self.ids.calc_input.text += '-'
-
-    def multiply(self):
-        self.ids.calc_input.text += 'x'
-
-    def divide(self):
-        self.ids.calc_input.text += '÷'
-
-    def sum(self):
+    def _dismember_digit(self):  # Separates the numbers from the digits.
+        number = ''
+        numbers, operators = [], []
         calc_text = self.ids.calc_input.text
-        answer = 0
+        for i, caracter in enumerate(calc_text + '_'):  # The underscore is making the number enter in the 'else'
+            if caracter.isalnum() == True:
+                number += caracter
+            else:
+                numbers.append(number)
+                operators.append(caracter)
+                number = ''
+        operators.remove('_')
+        return numbers, operators
 
-        # Addition
-        if '+' in calc_text:
-            num_list = calc_text.split('+')
-            for number in num_list:
-                answer += int(number)
+    def _sum(self):
+        numbers = self.numbers
+        operators = self.operators
+        answer = int(numbers[0])
+        numbers.pop(0)
+
+        for operator in operators:
+            for number in numbers:
+                match operator:
+                    case '+':
+                        answer += int(number)
+                        numbers.pop(0)
+                    case '-':
+                        print(numbers, operators)
+                        answer = answer - int(number)
+                        numbers.pop(0)
+        return answer
+
+
+    def sum_buttom_pressed(self):
+        calc_text = self.ids.calc_input.text
+        self.numbers, self.operators = self._dismember_digit()
+        try:
+            answer = self._sum()
             self.ids.calc_input.text = str(answer)
-
+        except:
+            self.ids.calc_input.text = 'ERROR'
 
 class Calculator(App):
     def build(self) -> None:

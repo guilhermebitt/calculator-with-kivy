@@ -28,7 +28,7 @@
             Button:
                 text: '%'
                 background_color: 0.40, 0.40, 0.50, 1
-                #on_press: root.digit(self)
+                on_press: root.digit(self)
             Button:
                 text: 'CE'
                 background_color: 0.40, 0.40, 0.50, 1
@@ -40,7 +40,7 @@
             Button:
                 text: '÷'
                 background_color: 0.40, 0.40, 0.50, 1
-                on_press: root.divide()
+                on_press: root.digit(self)
 
             # Row2
             Button:
@@ -55,7 +55,7 @@
             Button:
                 text: 'x'
                 background_color: 0.40, 0.40, 0.50, 1
-                on_press: root.multiply()
+                on_press: root.digit(self)
 
             # Row3
             Button:
@@ -70,7 +70,7 @@
             Button:
                 text: '-'
                 background_color: 0.40, 0.40, 0.50, 1
-                on_press: root.subtract()
+                on_press: root.digit(self)
 
             # Row4
             Button:
@@ -85,7 +85,7 @@
             Button:
                 text: '+'
                 background_color: 0.40, 0.40, 0.50, 1
-                on_press: root.add()
+                on_press: root.digit(self)
 
             # Row5
             Button:
@@ -100,4 +100,4 @@
             Button:
                 text: '='
                 background_color: 0.40, 0.40, 0.80, 1
-                on_press: root.sum()
+                on_press: root.sum_buttom_pressed()
