@@ -38,19 +38,17 @@ class CalcLayout(Widget):
         operators = self.operators
         answer = int(numbers[0])
         numbers.pop(0)
-
-        for operator in operators:
-            for number in numbers:
-                match operator:
-                    case '+':
-                        answer += int(number)
-                        numbers.pop(0)
-                    case '-':
-                        print(numbers, operators)
-                        answer = answer - int(number)
-                        numbers.pop(0)
+        while numbers:
+            match operators[0]:
+                case '+':
+                    answer += int(numbers[0])
+                    numbers.pop(0)
+                    operators.pop(0)
+                case '-':
+                    answer = answer - int(numbers[0])
+                    numbers.pop(0)
+                    operators.pop(0)
         return answer
-
 
     def sum_buttom_pressed(self):
         calc_text = self.ids.calc_input.text
@@ -60,6 +58,7 @@ class CalcLayout(Widget):
             self.ids.calc_input.text = str(answer)
         except:
             self.ids.calc_input.text = 'ERROR'
+
 
 class Calculator(App):
     def build(self) -> None:
