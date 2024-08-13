@@ -44,13 +44,25 @@ class CalcLayout(Widget):
         while numbers:
             match operators[0]:
                 case '+':
-                    answer += int(numbers[0])
+                    answer = answer + int(numbers[0])
                     numbers.pop(0)
                     operators.pop(0)
                 case '-':
                     answer = answer - int(numbers[0])
                     numbers.pop(0)
                     operators.pop(0)
+                case '*':
+                    answer = answer * int(numbers[0])
+                    numbers.pop(0)
+                    operators.pop(0)
+                case '÷':
+                    answer = answer / int(numbers[0])
+                    numbers.pop(0)
+                    operators.pop(0)
+
+        if str(answer)[-2:] == '.0':
+            answer = int(answer)
+            
         return answer
 
     def equals_buttom_pressed(self):
