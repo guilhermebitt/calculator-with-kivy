@@ -18,6 +18,16 @@ class CalcLayout(Widget):
         if str(calc_text) == '0' and digit.text != '.':
             self.ids.calc_input.text = ''
         self.ids.calc_input.text += digit.text
+    
+    def change_sign(self):
+        numbers, operators = self._dismember_digit()
+        if not operators:
+            self.ids.calc_input.text = '-' + self.ids.calc_input.text
+        else:
+            if str(self.ids.calc_input.text)[0] == '-':
+                self.ids.calc_input.text = '+' + str(self.ids.calc_input.text)[1:]
+            elif str(self.ids.calc_input.text)[0] == '+':
+                self.ids.calc_input.text = '-' + str(self.ids.calc_input.text)[1:]
 
     def _dismember_digit(self):  # Separates the numbers from the digits.
         number = ''
