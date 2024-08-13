@@ -23,7 +23,7 @@ class CalcLayout(Widget):
         number = ''
         numbers, operators = [], []
         calc_text = self.ids.calc_input.text
-        for i, caracter in enumerate(calc_text + '_'):  # The underscore is making the number enter in the 'else'
+        for caracter in calc_text + '_':  # The underscore is making the number enter in the 'else'
             if caracter.isalnum() == True:
                 number += caracter
             else:
@@ -36,7 +36,10 @@ class CalcLayout(Widget):
     def _sum(self):
         numbers = self.numbers
         operators = self.operators
-        answer = int(numbers[0])
+        if numbers[0] == '':
+            answer = 0
+        else:
+            answer = int(numbers[0])
         numbers.pop(0)
         while numbers:
             match operators[0]:
