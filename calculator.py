@@ -15,7 +15,7 @@ class CalcLayout(Widget):
     def digit(self, digit):
         calc_text = self.ids.calc_input.text  # Variable for the text in the inputtext widget
 
-        if str(calc_text) == '0':
+        if str(calc_text) == '0' and digit.text != '.':
             self.ids.calc_input.text = ''
         self.ids.calc_input.text += digit.text
 
