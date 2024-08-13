@@ -33,7 +33,7 @@ class CalcLayout(Widget):
         operators.remove('_')
         return numbers, operators
 
-    def _sum(self):
+    def _calc(self):
         numbers = self.numbers
         operators = self.operators
         if numbers[0] == '':
@@ -53,11 +53,11 @@ class CalcLayout(Widget):
                     operators.pop(0)
         return answer
 
-    def sum_buttom_pressed(self):
+    def equals_buttom_pressed(self):
         calc_text = self.ids.calc_input.text
         self.numbers, self.operators = self._dismember_digit()
         try:
-            answer = self._sum()
+            answer = self._calc()
             self.ids.calc_input.text = str(answer)
         except:
             self.ids.calc_input.text = 'ERROR'
