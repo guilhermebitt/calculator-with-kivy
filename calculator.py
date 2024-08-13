@@ -24,7 +24,7 @@ class CalcLayout(Widget):
         numbers, operators = [], []
         calc_text = self.ids.calc_input.text
         for caracter in calc_text + '_':  # The underscore is making the number enter in the 'else'
-            if caracter.isalnum() == True:
+            if caracter.isalnum() == True or caracter == '.':
                 number += caracter
             else:
                 numbers.append(number)
@@ -39,30 +39,30 @@ class CalcLayout(Widget):
         if numbers[0] == '':
             answer = 0
         else:
-            answer = int(numbers[0])
+            answer = float(numbers[0])
         numbers.pop(0)
         while numbers:
             match operators[0]:
                 case '+':
-                    answer = answer + int(numbers[0])
+                    answer = answer + float(numbers[0])
                     numbers.pop(0)
                     operators.pop(0)
                 case '-':
-                    answer = answer - int(numbers[0])
+                    answer = answer - float(numbers[0])
                     numbers.pop(0)
                     operators.pop(0)
                 case '*':
-                    answer = answer * int(numbers[0])
+                    answer = answer * float(numbers[0])
                     numbers.pop(0)
                     operators.pop(0)
                 case '÷':
-                    answer = answer / int(numbers[0])
+                    answer = answer / float(numbers[0])
                     numbers.pop(0)
                     operators.pop(0)
 
         if str(answer)[-2:] == '.0':
             answer = int(answer)
-            
+
         return answer
 
     def equals_buttom_pressed(self):
