@@ -2,7 +2,7 @@
 Studying the Kivy framework by doing a calculator app
 
 ## Purpose
-To create a python app thats calc things. There's no much to explain, it's a calculator.
+To create a python app that calculates things. There's no much to explain, it's a calculator.
 
 The reason I'm doing this is to study more about object-oriented programming (OOP) and the Kivy Framework to start making more useful applications to automate my day-to-day life.
 ***
