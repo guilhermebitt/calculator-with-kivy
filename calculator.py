@@ -79,7 +79,6 @@ class CalcLayout(Widget):
         calc_text = self.ids.calc_input.text
         self.numbers, self.operators = self._dismember_digit()
         try:
-            print(self.numbers, self.operators + '1')  # For some reason, I NEED this, otherwise the app will crash 
             answer = self._calc()
             self.ids.calc_input.text = str(answer)
         except:
