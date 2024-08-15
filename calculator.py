@@ -9,13 +9,18 @@ Builder.load_file('design_calculator.kv')
 Window.size = 500, 700
 
 class CalcLayout(Widget):
-    def clear(self):
-        self.ids.calc_input.text = '0'
+    def clear(self, instance):
+        if instance.text == 'BS':
+            self.ids.calc_input.text = self.ids.calc_input.text[:-1]
+            if self.ids.calc_input.text == '':
+                self.ids.calc_input.text = '0'
+        else:
+            self.ids.calc_input.text = '0'
 
     def digit(self, digit):
         calc_text = self.ids.calc_input.text  # Variable for the text in the inputtext widget
 
-        if str(calc_text) == '0' and digit.text != '.':
+        if str(calc_text) == '0' and digit.text != '.' or str(calc_text) == 'ERROR':
             self.ids.calc_input.text = ''
         self.ids.calc_input.text += digit.text
     
@@ -25,7 +30,7 @@ class CalcLayout(Widget):
             self.ids.calc_input.text = '-' + self.ids.calc_input.text
         else:
             if str(self.ids.calc_input.text)[0] == '-':
-                self.ids.calc_input.text = '+' + str(self.ids.calc_input.text)[1:]
+                self.ids.calc_input.text = '' + str(self.ids.calc_input.text)[1:]
             elif str(self.ids.calc_input.text)[0] == '+':
                 self.ids.calc_input.text = '-' + str(self.ids.calc_input.text)[1:]
 
@@ -69,6 +74,10 @@ class CalcLayout(Widget):
                     answer = answer / float(numbers[0])
                     numbers.pop(0)
                     operators.pop(0)
+                case '%':
+                    answer = answer * (float(numbers[0]) / 100)
+                    numbers.pop(0)
+                    operators.pop(0)
 
         if str(answer)[-2:] == '.0':
             answer = int(answer)
@@ -76,14 +85,18 @@ class CalcLayout(Widget):
         return answer
 
     def equals_buttom_pressed(self):
-        calc_text = self.ids.calc_input.text
         self.numbers, self.operators = self._dismember_digit()
+        operators_filter = ['+', '-', '*', '÷', '%', '.']
         try:
+            for i in str(self.ids.calc_input.text):
+                #print(i)
+                if i not in operators_filter and i.isnumeric() == False:
+                    raise Exception
             answer = self._calc()
+            #print(self.numbers, self.operators + '1')  # For some reasson, I NEED to keep this in the code, otherwise it'll crash
             self.ids.calc_input.text = str(answer)
         except:
             self.ids.calc_input.text = 'ERROR'
-
 
 class Calculator(App):
     def build(self) -> None:
