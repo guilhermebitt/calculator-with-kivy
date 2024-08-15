@@ -4,6 +4,7 @@ from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.properties import ObjectProperty
 
+
 # Settings
 Builder.load_file('design_calculator.kv')
 Window.size = 500, 700
