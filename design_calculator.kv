@@ -16,6 +16,8 @@
             halign: 'right'
             font_size: 65
             size_hint: 1, 0.2
+            readonly: True
+            cursor_color: 0, 0, 0, 0
             background_color: 0.10, 0.10, 0.15, 1
             foreground_color: 1, 1, 1, 1
         
@@ -32,12 +34,12 @@
             Button:
                 text: 'CE'
                 background_color: 0.40, 0.40, 0.50, 1
-                on_press: root.clear()
+                on_press: root.clear(self)
             Button:
                 id: clear
-                text: 'C'
+                text: 'BS'
                 background_color: 0.40, 0.40, 0.50, 1
-                on_press: root.clear()
+                on_press: root.clear(self)
             Button:
                 text: '÷'
                 background_color: 0.40, 0.40, 0.50, 1
