@@ -6,7 +6,7 @@ To create a python app thats calc things. There's no much to explain, it's a cal
 
 The reason I'm doing this is to study more about object-oriented programming (OOP) and the Kivy Framework to start making more useful applications to automate my day-to-day life.
 ***
-## More About Me
+## More About Me :D
 My name is Guilherme, I'm 17 year old and I want to improve my knowledge on programation, then I desire to take a job in this area.
 
 I'm taking a technical IT course at Senac (Brazilian Technical School) and I'm in the 2nd year of high school.
